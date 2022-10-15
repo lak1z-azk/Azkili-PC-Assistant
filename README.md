@@ -38,3 +38,4 @@ Activate Win 10 Pro - added a License key only for Windows 10 Pro version. (Didn
 Add User - easily reach User Account window.
 
 
+IF YOU HAVE REQUESTS/FEEDBACK/BUG REPORTS - Create an issue here and I will take a look into it. 
