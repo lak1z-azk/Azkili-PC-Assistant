@@ -31,3 +31,5 @@ Below you can also check the full information about your pc by clicking DXDIAG b
 Update all - updates everything what was installed with this tool.
 
 Activate Win 10 Pro - added a License key only for Windows 10 Pro version. (Didn't checked if working for others. Let me know about this if it works or not)
+
+Add User - easily reach User Account window.
