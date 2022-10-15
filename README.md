@@ -2,7 +2,10 @@ README
 Read before proceed!
 
 How to use:
-Download the source and place it to your USB flash drive.
+Download the source and place it to your USB flash drive. Make sure you place the scripts in the Scripts folder too, otherwise the tool won't work.
+![image](https://user-images.githubusercontent.com/100957521/195975600-59fe52e1-3454-47c4-8a54-50f5ff81814e.png)
+
+
 Run IOWT.exe 
 Start from Basic Install. This tool includes Chocolatey for further work.
 All scripts are based with powershell and requires ADMIN RIGHTS. When asks UAC to continue, click YES.
@@ -33,3 +36,5 @@ Update all - updates everything what was installed with this tool.
 Activate Win 10 Pro - added a License key only for Windows 10 Pro version. (Didn't checked if working for others. Let me know about this if it works or not)
 
 Add User - easily reach User Account window.
+
+
