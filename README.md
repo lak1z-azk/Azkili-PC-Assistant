@@ -27,13 +27,11 @@ Everything will run in background and while installing you will not be able to u
 
 For games there is set additional platform tools to be installed.
 
-If you also want some additional applications. The list is provided on the right side.
+If you also want some additional applications.
 
 Below you can also check the full information about your pc by clicking DXDIAG button. If you want to delete applications - easily reach Add/Remove window by one click.
 
 Update all - updates everything what was installed with this tool.
-
-Activate Win 10 Pro - added a License key only for Windows 10 Pro version. (Didn't checked if working for others. Let me know about this if it works or not)
 
 Add User - easily reach User Account window.
 
