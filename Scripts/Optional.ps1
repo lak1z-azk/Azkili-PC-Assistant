@@ -59,7 +59,7 @@ $Header8.ForeColor = "white"
 
 $Header5 = New-Object System.Windows.Forms.Label
 
-$Header5.Text = "Personal Use"
+$Header5.Text = "Applications"
 $Header5.Location  = New-Object System.Drawing.Point(315,25)
 
 $Header5.AutoSize = $true
@@ -72,38 +72,14 @@ $Header5.ForeColor = "white"
 
 
 
-##############################
 
-$Header6 = New-Object System.Windows.Forms.Label
 
-$Header6.Text = "Brave `nVLC `nNotepad++ `nAdobe Reader `nGrammarly `nTeam Viewer "
-$Header6.Location  = New-Object System.Drawing.Point(315,80)
 
-$Header6.AutoSize = $true
 
-$Header6.Font = "Humnst777 BlkCn BT"
-$Header6.BackColor = "Transparent"
-$main_form.Controls.Add($Header6)
-$Header6.ForeColor = "white"
-
-##############################
-
-$Header = New-Object System.Windows.Forms.Label
-
-$Header.Text = "Google Chrome `nVLC `nNotepad++ `nAdobeReader `nGrammarly `nCCleaner `nAvast Free Antivirus"
-$Header.Location  = New-Object System.Drawing.Point(175,80)
-
-$Header.AutoSize = $true
-
-$Header.BackColor = "Transparent"
-$header.Font = "Humnst777 BlkCn BT"
-
-$main_form.Controls.Add($Header)
-$Header.ForeColor = "white"
 #########################################
 $Header = New-Object System.Windows.Forms.Label
 
-$Header.Text = "Default Users"
+$Header.Text = "Applications"
 $Header.Location  = New-Object System.Drawing.Point(175,25)
 
 $Header.AutoSize = $true
@@ -405,51 +381,231 @@ $Button11.Add_Click(
 
 })
 
+#Default User Script
+$upcoming = New-Object System.Windows.Forms.Button
 
-$MinInstall = New-Object System.Windows.Forms.Button
+$upcoming.Location = New-Object System.Drawing.Size(150,50)
 
-$MinInstall.Location = New-Object System.Drawing.Size(150,50)
+$upcoming.Size = New-Object System.Drawing.Size(120,23)
+$upcoming.Font =  "Humnst777 BlkCn BT"
+$upcoming.Text = "In progress..."
+$upcoming.ForeColor = "White"
 
-$MinInstall.Size = New-Object System.Drawing.Size(120,23)
-$MinInstall.Font =  "Humnst777 BlkCn BT"
-$MinInstall.Text = "Install"
-$MinInstall.ForeColor = "White"
+$upcoming.BackColor = "DarkRed"
 
-$MinInstall.BackColor = "DarkRed"
-
-$main_form.Controls.Add($MinInstall)
+$main_form.Controls.Add($upcoming)
 
 
-$MinInstall.Add_Click(
+$upcoming.Add_Click(
 
 {
 
- $Label3.Text = choco install googlechrome vlc notepadplusplus adobereader grammarly ccleaner avastfreeantivirus  -y 
+ $Label3.Text = "Something will be in future"
+
+})
+
+$gchrome = New-Object System.Windows.Forms.Button
+
+$gchrome.Location = New-Object System.Drawing.Size(150,80)
+
+$gchrome.Size = New-Object System.Drawing.Size(120,23)
+$gchrome.Font =  "Humnst777 BlkCn BT"
+$gchrome.Text = "Google Chrome"
+$gchrome.ForeColor = "White"
+
+$gchrome.BackColor = "DarkRed"
+
+$main_form.Controls.Add($gchrome)
+
+
+$gchrome.Add_Click(
+
+{
+
+ $Label3.Text = choco install googlechrome -y 
+
+})
+
+$ccleaner = New-Object System.Windows.Forms.Button
+
+$ccleaner.Location = New-Object System.Drawing.Size(150,110)
+
+$ccleaner.Size = New-Object System.Drawing.Size(120,23)
+$ccleaner.Font =  "Humnst777 BlkCn BT"
+$ccleaner.Text = "CCleaner"
+$ccleaner.ForeColor = "White"
+
+$ccleaner.BackColor = "DarkRed"
+
+$main_form.Controls.Add($ccleaner)
+
+
+$ccleaner.Add_Click(
+
+{
+
+ $Label3.Text = choco install avastfreeantivirus -y 
+
+})
+
+$avast = New-Object System.Windows.Forms.Button
+
+$avast.Location = New-Object System.Drawing.Size(150,140)
+
+$avast.Size = New-Object System.Drawing.Size(120,23)
+$avast.Font =  "Humnst777 BlkCn BT"
+$avast.Text = "Avast Antivirus"
+$avast.ForeColor = "White"
+
+$avast.BackColor = "DarkRed"
+
+$main_form.Controls.Add($avast)
+
+
+$avast.Add_Click(
+
+{
+
+ $Label3.Text = choco install avastfreeantivirus -y 
+
+})
+
+#Personal User Install
+$Brave = New-Object System.Windows.Forms.Button
+
+$Brave.Location = New-Object System.Drawing.Size(290,50)
+
+$Brave.Size = New-Object System.Drawing.Size(120,23)
+$Brave.Font =  "Humnst777 BlkCn BT"
+$Brave.Text = "Brave"
+$Brave.ForeColor = "White"
+
+$Brave.BackColor = "DarkRed"
+
+$main_form.Controls.Add($Brave)
+
+
+$Brave.Add_Click(
+
+{
+
+ $Label3.Text = choco install brave -y 
 
 })
 
 
-$advInstall = New-Object System.Windows.Forms.Button
+$VLC = New-Object System.Windows.Forms.Button
 
-$advInstall.Location = New-Object System.Drawing.Size(290,50)
+$VLC.Location = New-Object System.Drawing.Size(290,80)
 
-$advInstall.Size = New-Object System.Drawing.Size(120,23)
-$advInstall.Font =  "Humnst777 BlkCn BT"
-$advInstall.Text = "Install"
-$advInstall.ForeColor = "White"
+$VLC.Size = New-Object System.Drawing.Size(120,23)
+$VLC.Font =  "Humnst777 BlkCn BT"
+$VLC.Text = "VLC"
+$VLC.ForeColor = "White"
 
-$advInstall.BackColor = "DarkRed"
+$VLC.BackColor = "DarkRed"
 
-$main_form.Controls.Add($advInstall)
+$main_form.Controls.Add($VLC)
 
 
-$advInstall.Add_Click(
+$VLC.Add_Click(
 
 {
 
- $Label3.Text = choco install brave vlc notepadplusplus adobereader grammarly teamviewer  -y 
+ $Label3.Text = choco install vlc  -y 
 
 })
+
+$Notepadplusplus = New-Object System.Windows.Forms.Button
+
+$Notepadplusplus.Location = New-Object System.Drawing.Size(290,110)
+
+$Notepadplusplus.Size = New-Object System.Drawing.Size(120,23)
+$Notepadplusplus.Font =  "Humnst777 BlkCn BT"
+$Notepadplusplus.Text = "Notepad++"
+$Notepadplusplus.ForeColor = "White"
+
+$Notepadplusplus.BackColor = "DarkRed"
+
+$main_form.Controls.Add($Notepadplusplus)
+
+
+$Notepadplusplus.Add_Click(
+
+{
+
+ $Label3.Text = choco install notepadplusplus  -y 
+
+})
+
+
+$adobe = New-Object System.Windows.Forms.Button
+
+$adobe.Location = New-Object System.Drawing.Size(290,140)
+
+$adobe.Size = New-Object System.Drawing.Size(120,23)
+$adobe.Font =  "Humnst777 BlkCn BT"
+$adobe.Text = "Adobe Reader"
+$adobe.ForeColor = "White"
+
+$adobe.BackColor = "DarkRed"
+
+$main_form.Controls.Add($adobe)
+
+
+$adobe.Add_Click(
+
+{
+
+ $Label3.Text = choco install adobereader  -y 
+
+})
+
+$Grammarly = New-Object System.Windows.Forms.Button
+
+$Grammarly.Location = New-Object System.Drawing.Size(290,170)
+
+$Grammarly.Size = New-Object System.Drawing.Size(120,23)
+$Grammarly.Font =  "Humnst777 BlkCn BT"
+$Grammarly.Text = "Grammarly"
+$Grammarly.ForeColor = "White"
+
+$Grammarly.BackColor = "DarkRed"
+
+$main_form.Controls.Add($Grammarly)
+
+
+$Grammarly.Add_Click(
+
+{
+
+ $Label3.Text = choco install grammarly  -y 
+
+})
+
+
+$teamviewer = New-Object System.Windows.Forms.Button
+
+$teamviewer.Location = New-Object System.Drawing.Size(290,200)
+
+$teamviewer.Size = New-Object System.Drawing.Size(120,23)
+$teamviewer.Font =  "Humnst777 BlkCn BT"
+$teamviewer.Text = "Team Viewer"
+$teamviewer.ForeColor = "White"
+
+$teamviewer.BackColor = "DarkRed"
+
+$main_form.Controls.Add($teamviewer)
+
+
+$teamviewer.Add_Click(
+
+{
+
+ $Label3.Text = choco install teamviewer  -y 
+
+})
+
 
 $steaminstall = New-Object System.Windows.Forms.Button
 
@@ -634,41 +790,7 @@ Start-Process dxdiag.exe
 
 })
 
-$update = New-Object System.Windows.Forms.Button
 
-$update.Location = New-Object System.Drawing.Size(455,340)
-
-$update.Size = New-Object System.Drawing.Size(120,23)
-$update.Font =  "Humnst777 BlkCn BT"
-$update.Text = "Activate Win 10 Pro"
-$update.ForeColor = "White"
-
-$update.BackColor = "DarkRed"
-
-$main_form.Controls.Add($update)
-
-
-$update.Add_Click(
-
-{
-
-$Label3.Text = "Activating windows"
-sleep 2
-$OSversion = (Get-WmiObject -class Win32_OperatingSystem).Caption
-
-switch -Regex ($OSversion){
-    'Windows 10 Pro'  {$key = 'VK7JG-NPHTM-C97JM-9MPGT-3V66T';break}
-   
-}
-
-$KMSservice = Get-WMIObject -query "select * from SoftwareLicensingService"
-
-$Label3.Text = 'Windows Activated'
-$null = $KMSservice.InstallProductKey($key)
-$null = $KMSservice.RefreshLicenseStatus()
-
-
-})
 
  
 $main_form.ShowDialog()
