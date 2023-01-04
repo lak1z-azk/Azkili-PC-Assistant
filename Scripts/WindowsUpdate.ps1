@@ -1,4 +1,3 @@
-﻿
 #################TRANSCRIPT ENABLE
 Start-Transcript -Path C:\WindowsUpdateLog.txt
 Write-Host "`n-------------------------------------------------------------------"
@@ -6,28 +5,35 @@ Write-Host -ForegroundColor Yellow "Logs will be saved in C:\WindowsUpdateLog.tx
 Write-Host "-------------------------------------------------------------------"
 sleep 2
 
-
 #################WINDOWS UPDATES
 Write-Host "`n-------------------------------------------------------------------"
 Write-Host "Checking for Windows updates"
 Write-Host "-------------------------------------------------------------------"
 
-sleep 1
-Install-Module -Name PSWindowsUpdate -Force;
-    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned;
-    Import-Module PSWindowsUpdate;
-    Get-Command -Module PSWindowsUpdate;
-    Get-WindowsUpdate -Install -AcceptAll
-    
+# Try to install and apply Windows updates
+try {
+  # Install the PSWindowsUpdate module and set the execution policy
+  Install-Module -Name PSWindowsUpdate -Force
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
- sleep 1
+  # Import the module and list all available commands
+  Import-Module PSWindowsUpdate
+  Get-Command -Module PSWindowsUpdate
+
+  # Install all available updates
   Get-WindowsUpdate -Install -AcceptAll
-  sleep 2
 
-  Write-Host -ForegroundColor Yellow "Installation has finished... Closing script"
+  # Install any remaining updates
+  Get-WindowsUpdate -Install -AcceptAll
+}
+# Catch any errors that occur during the installation
+catch {
+  # Write an error message to the transcript
+  Write-Error "An error occurred while installing updates: $($_.Exception.Message)"
+}
+
+Write-Host -ForegroundColor Yellow "Installation has finished... Closing script"
 
 Stop-Transcript
 
 sleep 5
-
-
