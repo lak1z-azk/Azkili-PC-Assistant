@@ -6,7 +6,7 @@ Download the source and place it to your USB flash drive. Make sure you place th
 ![image](https://user-images.githubusercontent.com/100957521/195975600-59fe52e1-3454-47c4-8a54-50f5ff81814e.png)
 
 
-Run IOWT.exe 
+Run WS.exe 
 Start from Basic Install. This tool includes Chocolatey for further work.
 All scripts are based with powershell and requires ADMIN RIGHTS. When asks UAC to continue, click YES.
 
