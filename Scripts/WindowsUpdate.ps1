@@ -1,15 +1,9 @@
 #################TRANSCRIPT ENABLE
 Start-Transcript -Path C:\WindowsUpdateLog.txt
-Write-Host "`n-------------------------------------------------------------------"
 Write-Host -ForegroundColor Yellow "Logs will be saved in C:\WindowsUpdateLog.txt" 
-Write-Host "-------------------------------------------------------------------"
-sleep 2
 
 #################WINDOWS UPDATES
-Write-Host "`n-------------------------------------------------------------------"
 Write-Host "Checking for Windows updates"
-Write-Host "-------------------------------------------------------------------"
-
 # Try to install and apply Windows updates
 try {
   # Install the PSWindowsUpdate module and set the execution policy
