@@ -4,8 +4,6 @@ $main_form = New-Object System.Windows.Forms.Form
 $main_form.Text = 'IOWT Advanced Installer'
 $main_form.Width = 600
 $main_form.Height = 400
-
-
 $Image = [system.drawing.image]::FromFile("G:\Scripts\bg.png") 
 $main_form.BackgroundImage = $Image
 
@@ -14,16 +12,12 @@ $main_form.Icon = $objIcon
 
 $main_form.AutoSize = $true
 $main_form.BackColor = "Black"
-
-
 ####################### 
 $objListBox = New-Object Windows.Forms.Listbox
 $objListBox = New-Object System.Windows.Forms.ListBox
 $objListBox.Location = New-Object System.Drawing.Size(15,10)
 $objListBox.Size = New-Object System.Drawing.Size(600,10)
 $objListBox.Height = 400
-
-
 
 ######################
 
@@ -69,12 +63,6 @@ $header5.BackColor = "Transparent"
 
 $main_form.Controls.Add($Header5)
 $Header5.ForeColor = "white"
-
-
-
-
-
-
 
 #########################################
 $Header = New-Object System.Windows.Forms.Label
@@ -123,17 +111,12 @@ $Label3 = New-Object System.Windows.Forms.Label
 
 $Label3.Text = ""
 
-
 $Label3.Location  = New-Object System.Drawing.Point(70,400)
 
-$Label3.AutoSize = $false
+$Label3.Size = New-Object System.Drawing.Size(400,40)
 $Label3.BackColor = "Transparent"
 $main_form.Controls.Add($Label3)
 $Label3.ForeColor = "White"
-
-
-
-
 
 $Button = New-Object System.Windows.Forms.Button
 
@@ -156,7 +139,6 @@ $Button.Add_Click(
  $Label3.Text = choco install Blender -y
 
 })
-
 
 $Button2 = New-Object System.Windows.Forms.Button
 $Button2.Location = New-Object System.Drawing.Size(10,80)
@@ -372,7 +354,6 @@ $Button11.BackColor = "DarkRed"
 
 $main_form.Controls.Add($Button11)
 
-
 $Button11.Add_Click(
 
 {
@@ -394,7 +375,6 @@ $upcoming.ForeColor = "White"
 $upcoming.BackColor = "DarkRed"
 
 $main_form.Controls.Add($upcoming)
-
 
 $upcoming.Add_Click(
 
@@ -461,7 +441,6 @@ $avast.BackColor = "DarkRed"
 
 $main_form.Controls.Add($avast)
 
-
 $avast.Add_Click(
 
 {
@@ -484,7 +463,6 @@ $Brave.BackColor = "DarkRed"
 
 $main_form.Controls.Add($Brave)
 
-
 $Brave.Add_Click(
 
 {
@@ -506,9 +484,7 @@ $VLC.ForeColor = "White"
 $VLC.BackColor = "DarkRed"
 
 $main_form.Controls.Add($VLC)
-
-
-$VLC.Add_Click(
+             $VLC.Add_Click(
 
 {
 
@@ -528,8 +504,7 @@ $Notepadplusplus.ForeColor = "White"
 $Notepadplusplus.BackColor = "DarkRed"
 
 $main_form.Controls.Add($Notepadplusplus)
-
-
+       
 $Notepadplusplus.Add_Click(
 
 {
@@ -552,7 +527,6 @@ $adobe.BackColor = "DarkRed"
 
 $main_form.Controls.Add($adobe)
 
-
 $adobe.Add_Click(
 
 {
@@ -573,7 +547,6 @@ $Grammarly.ForeColor = "White"
 $Grammarly.BackColor = "DarkRed"
 
 $main_form.Controls.Add($Grammarly)
-
 
 $Grammarly.Add_Click(
 
@@ -674,7 +647,6 @@ $epicGames.Add_Click(
 
 })
 
-
 $GOGGalaxy = New-Object System.Windows.Forms.Button
 
 $GOGGalaxy.Location = New-Object System.Drawing.Size(430,140)
@@ -687,7 +659,6 @@ $GOGGalaxy.ForeColor = "White"
 $GOGGalaxy.BackColor = "DarkRed"
 
 $main_form.Controls.Add($GOGGalaxy)
-
 
 $GOGGalaxy.Add_Click(
 
@@ -755,7 +726,6 @@ $update.BackColor = "DarkRed"
 
 $main_form.Controls.Add($update)
 
-
 $update.Add_Click(
 
 {
@@ -790,9 +760,4 @@ Start-Process dxdiag.exe
 
 })
 
-
-
- 
 $main_form.ShowDialog()
-
-
