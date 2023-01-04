@@ -1,61 +1,71 @@
-﻿$PCName = $env:COMPUTERNAME
+# Set the PCName variable to the computer's name
+$PCName = $env:COMPUTERNAME
 
-
-#################TRANSCRIPT ENABLE
+# Start a transcript of the session and save it to a file
 Start-Transcript -Path C:\BasicInstall.txt
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor Yellow "Logs will be saved in C:\BasicInstall.txt" 
-Write-Host "-------------------------------------------------------------------"
-sleep 2
+Write-Host "Logs will be saved in C:\BasicInstall.txt" 
 
+# Wait for 2 seconds
+sleep 2 
 
+# Display a message indicating that the PC's status is being checked
+Write-Host -ForegroundColor Yellow "Checking PC Status..."
 
-#################DISK STATUS
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor Yellow "Checking Disk Status..."
-Write-Host "-------------------------------------------------------------------"
+# Check the internet connection
+$internetConnection = Test-Connection -ComputerName 8.8.8.8 -Count 1 -Quiet
+if ($internetConnection) {
+  Write-Host "Internet connection: OK"
+} else {
+  Write-Host "Internet connection: NOT OK"
+}
 
-Get-PhysicalDisk
+# Check the CPU status
+$cpu = Get-WmiObject -Class Win32_Processor | Select-Object -Property LoadPercentage
+Write-Host "CPU usage: $($cpu.LoadPercentage)%"
 
+# Check the RAM status
+$ram = Get-WmiObject -Class Win32_OperatingSystem | Select-Object -Property FreePhysicalMemory, TotalVisibleMemorySize
+$ramFree = [int]($ram.FreePhysicalMemory / 1024)
+$ramTotal = [int]($ram.TotalVisibleMemorySize / 1024)
+$ramUsage = 100 - [int]($ramFree / $ramTotal * 100)
+Write-Host "RAM usage: $ramUsage%"
+
+# Check the PC health
+$pcHealth = Get-WmiObject -Class Win32_OperatingSystem | Select-Object -Property Status
+Write-Host "PC health: $($pcHealth.Status)"
+
+# Wait for 3 seconds
 sleep 3
 
-
 #################CHOCOLATEY
-$chococheck = choco -?
-if(-not($chococheck) )
-{
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor Red "Chocolatey is not installed...  Installing"
-Write-Host "-------------------------------------------------------------------"
+# Check if Chocolatey is installed
+if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
+  # Chocolatey is not installed, so install it
+  Write-Host "Chocolatey is not installed... Installing"
 
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+  # Set the execution policy to allow the Chocolatey installation script to be run
+  Set-ExecutionPolicy Bypass -Scope Process -Force
+  # Set the security protocol to allow the Chocolatey installation script to be downloaded
+  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+  # Download and run the Chocolatey installation script
+  iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor Green "Installed on $PCName" 
-Write-Host "-------------------------------------------------------------------"
-sleep 2
+  # Display a message indicating that Chocolatey has been installed
+  Write-Host "Installed on $env:COMPUTERNAME"
+} else {
+  # Chocolatey is already installed, so display a message
+  Write-Host "Chocolatey already exists on $env:COMPUTERNAME"
 }
- else{
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor Green "Chocolatey already exists on $PCName "
-Write-Host "-------------------------------------------------------------------"
-sleep 1
-}
-
 
 
 
 #################WINDOWS APP DELETE
-Write-Host "`n-------------------------------------------------------------------"
 Write-Host -ForegroundColor Yellow "Deleting unneccesary Windows Apps"
-Write-Host "-------------------------------------------------------------------"
 Get-AppxPackage *skypeapp* | Remove-AppxPackage #Silent Remove
 sleep 2
 
 #################THIS PC ICON 
-Write-Host "`n-------------------------------------------------------------------"
 Write-Host -ForegroundColor Yellow "Adding This PC icon to desktop..."
-Write-Host "-------------------------------------------------------------------"
 $path="HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel"
 $name="{20D04FE0-3AEA-1069-A2D8-08002B30309D}"
 $exist="Get-ItemProperty -Path $path -Name $name"
@@ -80,75 +90,56 @@ $shell.undominimizeall()
 sleep 3
 
 #################CORTANA DISABLE
-Write-Host "`n-------------------------------------------------------------------"
 Write-Host -ForegroundColor Yellow "Disabling Cortana"
-Write-Host "-------------------------------------------------------------------"
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowCortanaButton" -Value 0
-sleep 1
-
 #################SEARCH BAR DISABLE
-Write-Host "`n-------------------------------------------------------------------"
 Write-Host -ForegroundColor Yellow "Disabling Search Bar"
-Write-Host "-------------------------------------------------------------------"
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Value 0
-sleep 1
-
 #################DISABLE NEWS & INTERESTS
-Write-Host "`n-------------------------------------------------------------------"
 Write-Host -ForegroundColor Yellow "Disabling News & Interests"
-Write-Host "-------------------------------------------------------------------"
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Feeds" -Name "ShellFeedsTaskbarViewMode" -Value 2 
-sleep 1
-
-
-#################SCHEDULED DEFRAG DISABLE
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor Yellow "Disabling Scheduled defrag... "
-Write-Host "-------------------------------------------------------------------"
-Start-Sleep -Seconds 3
-schtasks /Change /DISABLE /TN "\Microsoft\Windows\Defrag\ScheduleDefrag" 
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor GREEN "Scheduled Defrag has been disabled..."
-Write-Host "-------------------------------------------------------------------"
-Start-Sleep -Seconds 3
+sleep 2
 
 #################TIME ZONE
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor Yellow "Adjusting Time Zone..."
-Write-Host "-------------------------------------------------------------------"
-sleep 2
-
-
-
-$zone = Read-Host "Choose location: [LT/UK]"
-
-if($zone -Like "LT"){
-Set-TimeZone -Id "FLE Standard Time" -PassThru;
-            Set-WinHomeLocation -GeoId 0x8d;}
-
-elseif($zone -Like "UK")
-{
-Set-TimeZone -Id "GMT Standard Time" -PassThru
-            Set-WinHomeLocation -GeoId 0xf2;
+# Define a lookup table for time zones
+$timeZoneLookup = @{
+  "EET" = "FLE Standard Time"
+  "Europe/Vilnius" = "FLE Standard Time"
+  "GMT" = "GMT Standard Time"
 }
 
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor Yellow "Time zone has been adjusted"
-Write-Host "-------------------------------------------------------------------"
-Start-Sleep -Seconds 3
+# Check the user's IP location
+$ipLocation = (Invoke-WebRequest -Uri "https://ipinfo.io/json" -UseBasicParsing).Content | ConvertFrom-Json
+
+# Get the time zone for the IP location
+$timeZone = $ipLocation.timezone
+
+# Look up the time zone ID in the lookup table
+$timeZoneId = $timeZoneLookup[$timeZone]
+
+# Check if the time zone ID is valid
+if ($timeZoneId) {
+  # The time zone ID is valid, so set the time zone
+  Set-TimeZone -Id $timeZoneId
+
+  # Display a message indicating that the time zone has been adjusted
+  Write-Host "Time zone has been adjusted to $timeZoneId"
+} else {
+  # The time zone ID is not valid, so display an error message
+  Write-Host "Error: The time zone '$timeZone' could not be mapped to a valid time zone ID on the local computer."
+}
 
 #################KEYBOARD LAYOUTS
-Write-Host "`n-------------------------------------------------------------------"
-Write-Host -ForegroundColor Yellow "Adding keyboard layouts"
-Write-Host "-------------------------------------------------------------------"
+# Add two keyboard layouts: English (United States) and Lithuanian
+Set-WinUserLanguageList -LanguageList en-US,lt-LT -Force
 
- Set-WinUserLanguageList -LanguageList en-US,lt-LT; -Confirm:$False
-    Set-WinSystemLocale en-US;
-    Set-Culture en-Us; 
-    
+# Set the system locale to English (United States)
+Set-WinSystemLocale en-US
+
+# Set the culture for the current session to English (United States)
+Set-Culture en-Us
+           
 sleep 2
-
-
 
 #################PC Rename
 Write-Host "`n-------------------------------------------------------------------"
@@ -164,8 +155,4 @@ Rename-Computer -NewName $pcNewNO
 Write-Host -ForegroundColor Yellow "Installation has finished... Closing script"
 Stop-Transcript
 
-
 sleep 5
-
-
-
