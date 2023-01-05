@@ -1,44 +1,15 @@
 README
-Read before proceed!
-
-How to use:
-Download the source and place it to your USB flash drive. Make sure you place the scripts in the Scripts folder too, otherwise the tool won't work.
-![image](https://user-images.githubusercontent.com/100957521/195975600-59fe52e1-3454-47c4-8a54-50f5ff81814e.png)
-
-
-Run WS.exe 
-On the right side you will see the actual name of your PC, live CPU usage and available RAM memory. It is checking whether you are connected to the network or not (to have working tool, you must be connected to network!), it shows also (C:) drive usage and the uptime of the tool. 
-On the bottom left corner there is the Status text that the system is OK. It will inform you if you are exceeding the CPU usage (85% or more) or you have low available RAM memory (around 5gb left)
-
-Start from Basic Install. This tool includes Chocolatey for further work.
-All scripts are based with powershell and requires ADMIN RIGHTS. When asks UAC to continue, click YES.
+This tool is used to perform various tasks on a Windows computer, such as installing software and checking the system's status. To use the tool, download the source code and place it on a USB flash drive. Then, run the "WS.exe" file and ensure that the computer is connected to the internet. The tool will display information about the computer, including the uptime, CPU usage, and available RAM.
 
 ![image](https://user-images.githubusercontent.com/100957521/210652149-5e244d5a-1708-42be-a16a-20700d62a1ff.png)
 
 
-Wait till the installation finishes.
+To begin using the tool, start with the "Basic Install" option. This will install Chocolatey, which is required for the tool to function properly. All scripts used by the tool are based on PowerShell and require administrator rights. When prompted, click "YES" to continue.
 
-Run Windows Features - wait for installation finishes.
-Run Windows Updates - wait for installation finishes. (Check the powershell window, it may ask you to continue installation during the progress)
-Run Install Options
-
-Run one of the options you want to install (Default users or Personal use. You will find a list below with the basic apps which will be installed)
+Once the basic installation is complete, you can run the "Windows Features" and "Windows Updates" options to install additional features and updates. Then, select one of the "Install Options" to install a predetermined set of applications for either default users or personal use. If you want to install additional applications or games, there are options available for those as well.
 
 ![image](https://user-images.githubusercontent.com/100957521/195974638-bbcbcc7e-ce95-460d-9c4b-c231dc336b30.png)
 
+The tool also includes a button to view system information using the "DXDIAG" tool, and a shortcut to the "Add/Remove Programs" window to uninstall applications. There is also an option to update all installed applications and check for updates to those programs.
 
-Everything will run in background and while installing you will not be able to use other options until the installation finishes (it may take several minutes to finish or more)
-
-For games there is set additional platform tools to be installed.
-
-If you also want some additional applications.
-
-Below you can also check the full information about your pc by clicking DXDIAG button. If you want to delete applications - easily reach Add/Remove window by one click.
-
-Update all - updates everything what was installed with this tool.
-
-Add User - easily reach User Account window.
-
-Check for updates - this actually checks for the updates of installed applications with this tool. It runs in the background and won't be visible
-
-IF YOU HAVE REQUESTS/FEEDBACK/BUG REPORTS - Create an issue here and I will take a look into it. 
+If you have any requests, feedback, or bug reports, you can create an issue for the developer to review.
