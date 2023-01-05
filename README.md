@@ -6,7 +6,7 @@ This tool is used to perform various tasks on a Windows computer, such as instal
 
 To begin using the tool, start with the "Basic Install" option. This will install Chocolatey, which is required for the tool to function properly. All scripts used by the tool are based on PowerShell and require administrator rights. When prompted, click "YES" to continue.
 
-Once the basic installation is complete, you can run the "Windows Features" and "Windows Updates" options to install additional features and updates. Then, select one of the "Install Options" to install a predetermined set of applications for either default users or personal use. If you want to install additional applications or games, there are options available for those as well.
+Once the basic installation is complete, you can run the "Windows Features" and "Windows Updates" options to install additional features and updates. Then, select one of the "Install Options" to install a predetermined set of applications for either default users or personal use. If you want to install additional applications or game platforms, there are options available for those as well.
 
 ![image](https://user-images.githubusercontent.com/100957521/195974638-bbcbcc7e-ce95-460d-9c4b-c231dc336b30.png)
 
