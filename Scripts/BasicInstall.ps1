@@ -11,6 +11,8 @@ sleep 2
 # Display a message indicating that the PC's status is being checked
 Write-Host -ForegroundColor Yellow "Checking PC Status..."
 
+sleep 2
+
 # Check the internet connection
 $internetConnection = Test-Connection -ComputerName 8.8.8.8 -Count 1 -Quiet
 if ($internetConnection) {
@@ -19,21 +21,33 @@ if ($internetConnection) {
   Write-Host "Internet connection: NOT OK"
 }
 
+sleep 3
+
 # Check the CPU status
-$cpu = Get-WmiObject -Class Win32_Processor | Select-Object -Property LoadPercentage
-Write-Host "CPU usage: $($cpu.LoadPercentage)%"
+$cpu = Get-WmiObject -Class Win32_Processor | Select-Object -Property LoadPercentage, Name, NumberOfCores, NumberOfLogicalProcessors, MaxClockSpeed
+$cpu
+
+sleep 3
 
 # Check the RAM status
 $ram = Get-WmiObject -Class Win32_OperatingSystem | Select-Object -Property FreePhysicalMemory, TotalVisibleMemorySize
 $ramFree = [int]($ram.FreePhysicalMemory / 1024)
 $ramTotal = [int]($ram.TotalVisibleMemorySize / 1024)
-$ramUsage = 100 - [int]($ramFree / $ramTotal * 100)
+$ramUsage = [math]::Round((($ramTotal - $ramFree) / $ramTotal) * 100, 2)
 Write-Host "RAM usage: $ramUsage%"
+
+sleep 3 
+
+#Check the Disk usage
+$disks = Get-WmiObject Win32_LogicalDisk -Filter "DriveType = 3"
+$disks | ft DeviceID, @{label="Size(GB)";expression={$_.Size/1GB -as [int]}}, @{label="FreeSpace(GB)";expression={$_.FreeSpace/1GB -as [int]}}, @{label="FreeSpace(%)";expression={"{0:N2}" -f ($_.FreeSpace/$_.Size*100)}}
+sleep 3
 
 # Check the PC health
 $pcHealth = Get-WmiObject -Class Win32_OperatingSystem | Select-Object -Property Status
 Write-Host "PC health: $($pcHealth.Status)"
 
+sleep 3
 # Wait for 3 seconds
 sleep 3
 
