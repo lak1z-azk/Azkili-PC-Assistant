@@ -25,7 +25,7 @@
 - Windows setup is set for basic right now:
  - Delete unnecessary windows apps - it does uninstalls only one app, which currently comes with Windows, is Skype.
  - Common part with disabling Cortana, Search Bar and News & Interests.
- - Code part below how it is assigned:
+ - Code part how it is assigned:
  ``
  const operations = {
         deleteWindowsApps: () => runPowerShellAsAdmin(`Get-AppxPackage *skypeapp* | Remove-AppxPackage`),
