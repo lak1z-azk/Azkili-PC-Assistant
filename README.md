@@ -41,3 +41,5 @@
 ![image](https://github.com/user-attachments/assets/33bae67b-239d-4dac-82be-25b731a6f619)
 
 - This is the single part which uses Chocolatey string to install application. It will open a Powershell, where you will also see what is happening. 
+
+# NOTE! This application was tested locally! I will appreciate for feedback if you find that something isn't working as expected! Thanks!!!!!
