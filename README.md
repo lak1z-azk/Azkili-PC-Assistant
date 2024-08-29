@@ -2,6 +2,10 @@
 
 **Name**: Azkili PC Assistant
 
+# IMPORTANT NOTE!
+- Due to the size of exe file, which is exceeding more than 100mb for this tool. I am unable to upload this file here. Instead of that, I'm inviting you to my discord server, where you will be able to leave a feedback, suggestions and report bugs and receive live support. 
+Discord link: https://discord.gg/nabVjeXYBS
+
 ## Main Tab
 ![image](https://github.com/user-attachments/assets/37c272d9-28f8-4d25-8cc1-be03fd02db17)
 
