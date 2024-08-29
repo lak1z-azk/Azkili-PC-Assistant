@@ -1,15 +1,43 @@
-README
-This tool is used to perform various tasks on a Windows computer, such as installing software and checking the system's status. To use the tool, download the source code and place it on a USB flash drive. Then, run the "WS.exe" file and ensure that the computer is connected to the internet. The tool will display information about the computer, including the uptime, CPU usage, and available RAM.
+# This is the new and reworked version of old Customization tool. Providing with a new name, design.
 
-![image](https://user-images.githubusercontent.com/100957521/210652149-5e244d5a-1708-42be-a16a-20700d62a1ff.png)
+**Name**: Azkili PC Assistant
+
+## Main Tab
+![image](https://github.com/user-attachments/assets/37c272d9-28f8-4d25-8cc1-be03fd02db17)
+
+- I have reworked on this application with JS. Mostly all of the functionalities are left the same, it uses the same Powershell logic to install and setup the PC. 
+- With new design on main tab you will see you PC performance in live time like CPU, RAM and Network usage.
+- Below it fetches the 2 latest errors from your Event Viewer part.
+
+## PC Setup tab
+![image](https://github.com/user-attachments/assets/005e8e1f-2f63-4100-9d2d-c76c0488191b)
 
 
-To begin using the tool, start with the "Basic Install" option. This will install Chocolatey, which is required for the tool to function properly. All scripts used by the tool are based on PowerShell and require administrator rights. When prompted, click "YES" to continue.
+- In this tab you will be able to select keyboard layouts, which will set your selected language(-es). **NOTE:** Each time you will select a keyboard layout, it will replace all your existing keyboard layouts, so if you don't see your keyboard layout, reach me out and I will add it in future! 
+- Additionally it will add **This PC** icon to your desktop. 
+- Make sure you install **Chocolatey** as its required for further **Application** and **Utilities** setup. 
+- It will assign a Timezone by your location.
+- Debug log is set to show what is happening while you applying settings. 
 
-Once the basic installation is complete, you can run the "Windows Features" and "Windows Updates" options to install additional features and updates. Then, select one of the "Install Options" to install a predetermined set of applications for either default users or personal use. If you want to install additional applications or game platforms, there are options available for those as well.
+## Windows Setup
+![image](https://github.com/user-attachments/assets/3dce6629-b47e-4141-8cf3-7293127d9c6f)
 
-![image](https://user-images.githubusercontent.com/100957521/195974638-bbcbcc7e-ce95-460d-9c4b-c231dc336b30.png)
+- Windows setup is set for basic right now:
+ - Delete unnecessary windows apps - it does uninstalls only one app, which currently comes with Windows, is Skype.
+ - Common part with disabling Cortana, Search Bar and News & Interests.
+ - Code part below how it is assigned:
+ ``
+ const operations = {
+        deleteWindowsApps: () => runPowerShellAsAdmin(`Get-AppxPackage *skypeapp* | Remove-AppxPackage`),
+        disableCortana: () => runPowerShellAsAdmin(`Set-ItemProperty -Path "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" -Name "ShowCortanaButton" -Value 0`),
+        disableSearchBar: () => runPowerShellAsAdmin(`Set-ItemProperty -Path "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Search" -Name "SearchboxTaskbarMode" -Value 0`),
+        disableNewsInterests: () => runPowerShellAsAdmin(`Set-ItemProperty -Path "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Feeds" -Name "ShellFeedsTaskbarViewMode" -Value 2`),
+        renamePC: (newName) => runPowerShellAsAdmin(`Rename-Computer -NewName "${newName}" -Force`)
+    };
+``
 
-The tool also includes a button to view system information using the "DXDIAG" tool, and a shortcut to the "Add/Remove Programs" window to uninstall applications. There is also an option to update all installed applications and check for updates to those programs.
+# Applications and Utilities
+![image](https://github.com/user-attachments/assets/418c3c01-dfb8-4ad6-ada8-20c955e5f61a)
+![image](https://github.com/user-attachments/assets/33bae67b-239d-4dac-82be-25b731a6f619)
 
-If you have any requests, feedback, or bug reports, you can create an issue for the developer to review.
+- This is the single part which uses Chocolatey string to install application. It will open a Powershell, where you will also see what is happening. 
